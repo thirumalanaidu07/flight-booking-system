@@ -160,32 +160,6 @@ npm start
 - `POST /book-ticket` - Book a flight
 - `PUT /cancel-ticket/:id` - Cancel a booking
 
----
-
-## Environment Variables
-
-- The backend connects to MongoDB at `mongodb://localhost:27017/flight-booking` by default.
-- For production, update the connection string in [`server/index.js`](server/index.js).
-
----
-
-## Screenshots
-
-> Add screenshots of the landing page, booking flow, admin dashboard, etc.
-
----
-
-## License
-
-This project is licensed under the MIT License.
-
----
-
-## Authors
-
-- [Your Name](https://github.com/yourusername)
-
----
 
 ## Acknowledgements
 
