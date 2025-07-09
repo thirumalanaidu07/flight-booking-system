@@ -1,0 +1,411 @@
+.user-bookingsPage {
+    margin-top: 70px;
+    min-height: calc(100vh - 70px);
+    padding: 2rem 4%;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    position: relative;
+}
+
+.user-bookingsPage::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%231c527e" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+    pointer-events: none;
+}
+
+/* Header Section */
+.bookings-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.bookings-header h1 {
+    color: #1c527e;
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #1c527e 0%, #2980b9 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.bookings-subtitle {
+    color: #2c3e50;
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+/* Loading State */
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    position: relative;
+    z-index: 2;
+}
+
+.loading-container .spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #1c527e;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+.loading-container p {
+    color: #2c3e50;
+    font-size: 1rem;
+}
+
+/* Error Message */
+.error-message {
+    background: rgba(231, 76, 60, 0.1);
+    border: 1px solid #e74c3c;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.5rem;
+    color: #e74c3c;
+    text-align: center;
+    font-weight: 500;
+    position: relative;
+    z-index: 2;
+}
+
+/* Empty State */
+.empty-bookings {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    z-index: 2;
+}
+
+.empty-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.empty-bookings h3 {
+    color: #1c527e;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.empty-bookings p {
+    color: #2c3e50;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.8;
+}
+
+/* Bookings Grid */
+.user-bookings {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* Individual Booking Card */
+.user-booking {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 12px;
+    padding: 1.25rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.user-booking:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Booking Header */
+.booking-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(28, 82, 126, 0.1);
+}
+
+.booking-id .id-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #1c527e;
+    font-family: 'Fira Code', monospace;
+    background: rgba(28, 82, 126, 0.1);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
+
+.booking-status {
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-confirmed {
+    background: rgba(39, 174, 96, 0.1);
+    color: #27ae60;
+    border: 1px solid rgba(39, 174, 96, 0.3);
+}
+
+.status-cancelled {
+    background: rgba(231, 76, 60, 0.1);
+    color: #e74c3c;
+    border: 1px solid rgba(231, 76, 60, 0.3);
+}
+
+.status-pending {
+    background: rgba(241, 196, 15, 0.1);
+    color: #f39c12;
+    border: 1px solid rgba(241, 196, 15, 0.3);
+}
+
+/* Booking Content */
+.booking-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Flight Route */
+.flight-route {
+    background: rgba(248, 249, 250, 0.8);
+    border-radius: 8px;
+    padding: 0.75rem;
+    border: 1px solid rgba(28, 82, 126, 0.1);
+}
+
+.route-cities {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.route-cities .city {
+    font-weight: 600;
+    color: #1c527e;
+    font-size: 1rem;
+}
+
+.route-cities .arrow {
+    color: #2980b9;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.flight-details {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #2c3e50;
+}
+
+.flight-name {
+    font-weight: 600;
+    color: #1c527e;
+}
+
+.flight-id {
+    color: #95a5a6;
+    margin-left: 0.25rem;
+}
+
+/* Booking Info */
+.booking-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.25rem 0;
+}
+
+.info-row .label {
+    font-weight: 500;
+    color: #2c3e50;
+    font-size: 0.8rem;
+}
+
+.info-row .value {
+    font-weight: 600;
+    color: #1c527e;
+    font-size: 0.85rem;
+}
+
+.info-row .price {
+    color: #27ae60;
+    font-weight: 700;
+}
+
+/* Seats Info */
+.seats-info {
+    background: rgba(39, 174, 96, 0.1);
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid rgba(39, 174, 96, 0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+}
+
+.seats-info .label {
+    font-weight: 500;
+    color: #27ae60;
+}
+
+.seats-info .value {
+    font-weight: 600;
+    color: #27ae60;
+    font-family: 'Fira Code', monospace;
+}
+
+/* Booking Dates */
+.booking-dates {
+    text-align: center;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(28, 82, 126, 0.1);
+}
+
+.date-label {
+    font-size: 0.75rem;
+    color: #95a5a6;
+    font-style: italic;
+}
+
+/* Booking Actions */
+.booking-actions {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.cancel-btn {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    color: white;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
+}
+
+.cancel-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
+    background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .user-bookings {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .user-bookingsPage {
+        padding: 1.5rem 2%;
+    }
+    
+    .bookings-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .user-bookings {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 1rem;
+    }
+    
+    .user-booking {
+        padding: 1rem;
+    }
+    
+    .booking-info {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+    }
+    
+    .info-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .user-bookingsPage {
+        padding: 1rem;
+    }
+    
+    .bookings-header h1 {
+        font-size: 1.6rem;
+    }
+    
+    .user-bookings {
+        grid-template-columns: 1fr;
+    }
+    
+    .user-booking {
+        padding: 0.75rem;
+    }
+    
+    .empty-bookings {
+        padding: 2rem 1rem;
+    }
+}
